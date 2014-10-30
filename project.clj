@@ -10,7 +10,8 @@
                  [lib-noir "0.9.4"]
                  [environ "1.0.0"]
                  [postgresql/postgresql "9.3-1102.jdbc4"]
-                 [org.clojure/java.jdbc "0.2.3"]]
+                 [org.clojure/java.jdbc "0.2.3"]
+                 [ring/ring-codec "1.0.0"]]
   :plugins [[lein-ring "0.8.12"]]
   :ring {:handler pdf-online.handler/app
          :init pdf-online.handler/init

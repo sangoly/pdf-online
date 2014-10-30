@@ -33,7 +33,8 @@
   (noir-middleware/app-handler 
     [upload-routes auth-routes home-routes app-routes]
     :access-rules [user-page]
-    :middleware [anti-forgery/wrap-anti-forgery]))
+    ;::middleware [anti-forgery/wrap-anti-forgery]
+    ))
 
 (#(if (env :dev) (wrap-error-page %) %) app)
 

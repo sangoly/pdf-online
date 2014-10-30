@@ -317,3 +317,59 @@ exit
 (use 'pdf-online.routes.auth)
 (delete-account "sangoly1")
 (delete-account "sangoly2")
+(use 'pdf-online.models.shcema)
+(use 'pdf-online.models.schema)
+(create-pdfs-table)
+dir
+(drop-table pdfs)
+(drop-table "pdfs")
+exit
+(use 'pdf-online.models.schema)
+(drop-table "pdfs")
+                                                                                         exit
+(use 'pdf-online.models.schema)
+(drop-table "pdfs")
+exit)
+(use 'pdf-online.models.schema)
+(create-pdfs-table)
+exit
+(use 'pdf-online.models.schema)
+(create-pdfs-table)
+(drop-table :pdfs)
+(create-pdfs-table)
+(def tt {:name "name" :age "age" :sex "sex"})
+@tt
+~tt
+@ttt
+@tt
+(def ff "test")
+@ff
+'ff
+'@ff
+(deref ff)
+(deref tt)
+exit
+(use 'pdf-online.models.schema)
+(drop-table :users)
+(drop-table :user)
+(drop-table :users)
+exit
+(use 'pdf-online.routes.auth)
+(delete-account "sangoly")
+(use 'pdf-online.models.schema)
+(create-user-table)
+(drop-table :user)
+(use 'pdf-online.modes.db)
+(use 'pdf-online.models.schema)
+(create-user-table)
+(create-pdfs-table)
+(use 'pdf-online.models.schema)
+(drop-table :users)
+(drop-table :pdfs)
+(drop-table :uers)
+(drop-table :users)
+(create-user-table)
+(create-pdfs-table)
+(use 'pdf-online.models.db)
+(create-user {:id "sangoly" :pass "111" :statewords "test"})
+(create-user {:id "sangoly" :pass "111" :statewords "test" :superuser "false"})

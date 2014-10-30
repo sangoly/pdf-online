@@ -1,11 +1,12 @@
 {% extends "pdf_online/template/base.html" %} 
 
 {% block header %}
-	<nav class="navbar" role="navigation">
+	<nav class="navbar navbar-inverse" role="navigation">
 		<div class="container">
 			<a class="navbar-brand" href="{{context}}/">首页</a>
 			<a class="navbar-brand" href="#">分类</a>
 			<a class="navbar-brand" href="#">占位</a>
+			{% include "pdf_online/template/fun.html" %}
 			<button type="button" class="btn btn-default navbar-btn navbar-right"
 							data-toggle="modal" data-target="#myModal">注册</button>		
 			<form class="navbar-form navbar-right" method="post" action="{{context}}/login">

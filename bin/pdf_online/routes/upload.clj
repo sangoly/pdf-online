@@ -5,13 +5,15 @@
             [pdf-online.views.layout :as layout]
             [noir.util.route :refer [restricted]]
             [noir.session :as session]
-            [noir.response :as resp]))
+            [noir.response :as resp]
+            [ring.util.codec :as codec]))
 
 (defn hand-upload-file 
   [{:keys [filename] :as file} categoery introduce]
   (if-not (empty? filename)
-    (util/save-upload-file file 
-                           (util/join-path-parts (session/get :user) util/pdf categoery))
+    (util/save-upload-file 
+      file 
+      (util/join-path-parts (session/get :user) util/pdf categoery))
     (session/put! :errors ["没有选择要上传的文件"]))
   (resp/redirect "/"))
 

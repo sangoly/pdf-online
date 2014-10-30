@@ -34,6 +34,7 @@
 
 ;; Handler the upload files
 (defn ensure-exists [path]
+  (println path)
   (let [dir (File. path)]
     (if-not (.exists dir)
       (.mkdirs dir))))
