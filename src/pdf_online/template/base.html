@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="pragma" content="no-cache">
+	    <meta http-equiv="cache-control" content="no-cache">
+	    <meta http-equiv="expires" content="0">
+		<title>{% if title%}{{ title }}{% else %}PDF-Online{% endif %}
+		</title>
+		<script type="text/javascript" src="{{context}}/js/jquery.min.js"></script>
+		<script type="text/javascript" src="{{context}}/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="{{context}}/js/screen.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="{{context}}/css/screen.css">
+		<link rel="stylesheet" type="text/css" href="{{context}}/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="{{context}}/css/bootstrap-theme.min.css">
+	</head>
+	<body>
+		<div class="header">
+			{% block header %}{% endblock %}
+		</div>
+		<div class="content">
+			{% if errors %}
+				<div class="alert alert-danger" role="alert">
+					<ul>
+					{% for error in errors %}
+						<li>{{error}}</li>
+					{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+			{% block content %}{% endblock %}
+		</div>
+		<div class="footer">
+			{% block footer %}{% endblock %}
+		</div>
+	</body>
+</html>

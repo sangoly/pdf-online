@@ -1,0 +1,18 @@
+{% extends "pdf_online/template/base.html" %}
+
+{% block header %}
+	<nav class="navbar" role="navigation">
+		<div class="container">
+			<a class="navbar-brand" href="{{context}}/">首页</a>
+			<a class="navbar-brand" href="#">分类</a>
+			<a class="navbar-brand" href="#">占位</a>
+			<a class="navbar-brand" href="#" data-toggle="modal" 
+				 data-target="#myModal">上传PDF</a>
+			<a class="navbar-brand navbar-right" href="{{context}}/logout">退出</a>
+		</div>
+	</nav>
+	{% include "pdf_online/template/upload_pdf_form.html" %}
+{% endblock %}
+{% block content %}
+	{% include "pdf_online/template/index_body.html" %}
+{% endblock %}
