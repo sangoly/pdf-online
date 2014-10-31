@@ -1,5 +1,7 @@
 (ns pdf-online.models.db
-  (:require [clojure.java.jdbc :as sql]))
+  (:require [clojure.java.jdbc :as sql]
+            [pdf-online.util :as util]
+            [clojure.string :refer [join]]))
 
 (def db 
   {:subprotocol "postgresql"
@@ -31,6 +33,11 @@
   (with-db sql/delete-rows :pdfs 
     ["userid = ? and categoery = ? and name = ?" username categoery name]))
 
-(defn get-pdfs [params]
-  (with-db sql/with-query-results res
-    [(str "select * from pdfs where ")] (doall res)))
+(defn get-pdfs-by-inden [username categoery name]
+  (with-db sql/with-query-results
+    res ["select * from pdfs where userid = ? and categoery = ? and name = ?"
+         username categoery name] (doall res)))
+
+(defn get-pdfs []
+  (with-db sql/with-query-results
+    res ["select * from pdfs"] (doall res)))

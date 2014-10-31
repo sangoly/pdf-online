@@ -18,11 +18,13 @@
   (some #(= (.toLowerCase (last (clojure.string/split str #"/"))) %) 
         rules))
 
-(defn valid-register? [{:keys [size content-type]} username pass pass1]
-  (vali/rule (< size (* 2 1024 1024))
-             [:size "图片尺寸过大，请选择小于2M的图片"])
-  (vali/rule (valid-extend? content-type valid-image-extends)
-             [:type "只能选择jpeg、png、gif格式图片"])
+(defn valid-register? [{:keys [size content-type filename]} username pass pass1]
+  (if-not (empty? filename)
+    (do
+      (vali/rule (< size (* 2 1024 1024)) 
+                [:size "图片尺寸过大，请选择小于2M的图片"])
+      (vali/rule (valid-extend? content-type valid-image-extends) 
+                 [:type "只能选择jpeg、png、gif格式图片"])))
   (vali/rule (vali/has-value? username)
              [:username "请输入用户名"])
   (vali/rule (vali/has-value? pass)
@@ -70,7 +72,8 @@
                        :superuser false, :statewords util/default-statewords,
                        :image (headimage-path headimage)})
       (util/create-new-user-folder username)
-      (util/save-upload-file headimage (util/join-path-parts username util/image))
+      (if-not (empty? (:filename headimage))
+        (util/save-upload-file headimage (util/join-path-parts username util/image)))
       (session/put! :user username)
       (resp/redirect "/")
       (catch Exception ex

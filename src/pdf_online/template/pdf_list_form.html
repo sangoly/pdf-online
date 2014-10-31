@@ -1,0 +1,19 @@
+<div class="container">
+	<table class="table table-striped">
+		<tr>
+			<th>名称</th>
+			<th>所有者</th>
+			<th>类别</th>
+			<th>点击次数</th>
+		</tr>
+		{% for item in pdfItems %}
+			<tr>
+				<td><a href="{{context}}/{{item.userid}}/{{item.categoery}}/{{item.name}}">
+					{{item.name}}</a></td>
+				<td>{{item.userid}}</td>
+				<td>{{item.categoery}}</td>
+				<td>{{item.clicktimes}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>

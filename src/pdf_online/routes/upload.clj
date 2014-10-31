@@ -11,9 +11,17 @@
 (defn hand-upload-file 
   [{:keys [filename] :as file} categoery introduce]
   (if-not (empty? filename)
-    (util/save-upload-file 
-      file 
-      (util/join-path-parts (session/get :user) util/pdf categoery))
+    (if (empty? (db/get-pdfs-by-inden (session/get :user) categoery filename))
+	    (try
+	      (db/create-pdf-record {:userid (session/get :user) :categoery categoery
+	                             :name filename :introduce introduce})
+	      (util/save-upload-file 
+	        file 
+	        (util/join-path-parts (session/get :user) util/pdf categoery))
+	      (catch Exception e
+	        (db/delete-pdf-record (session/get :user categoery filename))
+	        (session/put! :errors ["发生错误，上传文件失败"])))
+      (session/put! :errors ["在相同类别下已存在同名文件"]))
     (session/put! :errors ["没有选择要上传的文件"]))
   (resp/redirect "/"))
 

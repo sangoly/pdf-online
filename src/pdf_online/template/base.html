@@ -29,7 +29,11 @@
 					</ul>
 				</div>
 			{% endif %}
-			{% block content %}{% endblock %}
+			{% block content %}
+				{% if pdfItems %}
+					{% include "pdf_online/template/pdf_list_form.html" %}
+				{% endif %}
+			{% endblock %}
 		</div>
 		<div class="footer">
 			{% block footer %}{% endblock %}

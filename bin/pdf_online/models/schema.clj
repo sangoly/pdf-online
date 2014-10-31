@@ -19,7 +19,7 @@
     [:userid "varchar(32) REFERENCES users(id) ON DELETE CASCADE not null"]
     [:categoery "varchar(50) not null"]
     [:name "varchar(100) not null"]
-    [:clicktimes "Integer not null"]
+    [:clicktimes "Integer not null default 0"]
     [:introduce "varchar(300)"]
     [:goodtimes "Integer not null default 0"]
     [:badtimes "Integer not null default 0"]

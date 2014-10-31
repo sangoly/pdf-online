@@ -54,3 +54,9 @@
                    (func func sub)))
                (clo-io/delete-file f))]
     (func func (clo-io/file user-root-path))))
+
+;; The tempore fucntion for translate keyword to string
+(defn key-to-str [key]
+  (if-not (keyword? key)
+    (str key)
+    (subs (str key) 1)))
