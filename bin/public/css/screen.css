@@ -8,3 +8,12 @@ h1 {
     text-align: center;
 }
 
+
+/*Just for fun*/
+span.redBall {
+	background-color: red;
+}
+
+span.blueBall {
+	background-color: blue;
+}

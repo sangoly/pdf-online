@@ -61,5 +61,18 @@ function introduceMonitor() {
             strlen = strlen + 1;
     }
     strlen = Math.ceil(strlen / 2);
+    if ((140 - strlen) < 0)
+        $('#submitBtn').attr("disabled", "true");
+    else
+        $('#submitBtn').removeAttr("disabled");
     $('em.resumewords').text(140 - strlen);
 }
+
+
+// Just for fun
+$(function (){
+    $('span.redBall').each(function (){
+        $(this).text(Math.ceil((Math.random() * 100) % 34));
+    });
+    $('span.blueBall').text(Math.ceil((Math.random() * 100) % 17));
+});
