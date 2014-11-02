@@ -1,7 +1,3 @@
-(use 'pdf-online.util)
-(join-path-paths "pdf_files" "c++")
-exit
-(use 'pdf-online.util)
 (join-path-parts "pdf_file" "c++")
 exit
 (use 'pdf-online.util)
@@ -497,4 +493,8 @@ exit
 (use 'pdf-online.models.db)
 (get-select-sql :users {:name "name"} {:test "test"})
 (get-select-sql :users {:name "name" :test "test"})
+exit
+(use 'pdf-online.routes.auth)
+(delete-account "sangoly")
+(delete-account "sangoly1")
 exit

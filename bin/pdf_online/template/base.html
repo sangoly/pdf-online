@@ -5,6 +5,7 @@
 		<meta http-equiv="pragma" content="no-cache">
 	    <meta http-equiv="cache-control" content="no-cache">
 	    <meta http-equiv="expires" content="0">
+	    <link rel="shortcut icon" href="{{context}}/img/favicon.ico" type="image/x-icon" />
 		<title>{% if title%}{{ title }}{% else %}PDF-Online{% endif %}
 		</title>
 		<script type="text/javascript" src="{{context}}/js/jquery.min.js"></script>
@@ -20,6 +21,9 @@
 			{% block header %}{% endblock %}
 		</div>
 		<div class="content">
+			<div class="alert alert-warning" role="alert" style="text-align: center;">
+				警告：“类别名称”暂不支持中文
+			</div>
 			{% if errors %}
 				<div class="alert alert-danger" role="alert">
 					<ul>

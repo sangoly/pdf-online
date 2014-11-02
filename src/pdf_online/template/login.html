@@ -1,10 +1,11 @@
 {% extends "pdf_online/template/base.html" %}
 
 {% block header %}
-	<nav class="navbar" role="navigation">
+	<nav class="navbar navbar-inverse" role="navigation">
 		<div class="container">
+			<img src="{{context}}/img/logo.gif" class="logo">
 			<a class="navbar-brand" href="{{context}}/">首页</a>
-			<a class="navbar-brand" href="#">分类</a>
+			<a class="navbar-brand" href="{{context}}/categoery/manage">分类</a>
 			<a class="navbar-brand" href="#">占位</a>
 			<a class="navbar-brand" href="#" data-toggle="modal" 
 				 data-target="#myModal">上传PDF</a>

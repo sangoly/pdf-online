@@ -6,6 +6,8 @@
             [pdf-online.routes.auth :refer [auth-routes]]
             [pdf-online.routes.upload :refer [upload-routes]]
             [pdf-online.routes.showpdf :refer [showpdf-routes]]
+            [pdf-online.routes.categoery-manage :refer 
+             [categoery-manage-routes]]
             [pdf-online.util :refer [get-template-path]]
             [noir.util.middleware :as noir-middleware]
             [noir.session :as session]
@@ -32,8 +34,8 @@
 
 (def app
   (noir-middleware/app-handler 
-    [showpdf-routes upload-routes auth-routes 
-     home-routes app-routes]
+    [categoery-manage-routes showpdf-routes upload-routes 
+     auth-routes home-routes app-routes]
     :access-rules [user-page]
     ;::middleware [anti-forgery/wrap-anti-forgery]
     ))

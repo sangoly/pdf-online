@@ -17,3 +17,9 @@ span.redBall {
 span.blueBall {
 	background-color: blue;
 }
+
+.logo {
+	float: left;
+	margin-top: 10px;
+	margin-right: 3px;
+}

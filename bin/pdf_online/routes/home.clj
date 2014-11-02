@@ -7,10 +7,10 @@
 
 (defn home []
   (if (session/get :user)
- ;; Categoeries shouble be fill with the user's metadata
- (layout/my-render "login.html" {:categoeries ["默认分组" "c++" "java" "clojure"]
-                                 :pdfItems (db/get-pdfs)})
- (layout/my-render "un_login.html" {})))
+    ;; Categoeries shouble be fill with the user's metadata
+	  (layout/my-render "login.html" {:categoeries ["default" "c++" "java" "clojure"]
+	                                  :pdfItems (db/get-pdfs)})
+	  (layout/my-render "index.html" {})))
 
 (defroutes home-routes
   (GET "/" [] (home)))

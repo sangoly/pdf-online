@@ -11,7 +11,7 @@
 (defn hand-upload-file 
   [{:keys [filename] :as file} categoery introduce]
   (if-not (empty? filename)
-    (if (empty? (db/get-pdfs-by-inden (session/get :user) categoery filename))
+    (if (nil? (db/get-pdf-by-inden (session/get :user) categoery filename))
 	    (try
 	      (db/create-pdf-record {:userid (session/get :user) :categoery categoery
 	                             :name filename :introduce introduce})

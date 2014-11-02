@@ -8,7 +8,10 @@
 		</tr>
 		{% for item in pdfItems %}
 			<tr>
-				<td><a href="{{context}}/{{item.userid}}/{{item.categoery}}/{{item.name}}">
+				<td>
+					<img style="weight:25px;height:25px;" src="{{context}}/img/pdf_icon.png">
+					<a href="{{context}}/{{item.userid}}/{{item.categoery}}/{{item.name}}" 
+					target="_blank">
 					{{item.name}}</a></td>
 				<td>{{item.userid}}</td>
 				<td>{{item.categoery}}</td>

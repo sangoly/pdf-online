@@ -33,11 +33,18 @@
   (with-db sql/delete-rows :pdfs 
     ["userid = ? and categoery = ? and name = ?" username categoery name]))
 
-(defn get-pdfs-by-inden [username categoery name]
+(defn get-pdf-by-inden [username categoery name]
   (with-db sql/with-query-results
     res ["select * from pdfs where userid = ? and categoery = ? and name = ?"
-         username categoery name] (doall res)))
+         username categoery name] (first res)))
 
 (defn get-pdfs []
   (with-db sql/with-query-results
     res ["select * from pdfs"] (doall res)))
+
+;; use userid categoery and name can find an only pdf record
+(defn update-pdf-attr [userid categoery name param]
+  (with-db sql/update-values
+    :pdfs ["userid = ? and categoery = ? and name = ?"
+           userid categoery name] param)
+  (println "update complete"))
