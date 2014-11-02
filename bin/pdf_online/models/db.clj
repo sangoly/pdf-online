@@ -24,6 +24,10 @@
   (with-db sql/with-query-results
     res ["select * from users where id = ?" id] (first res)))
 
+(defn get-users []
+  (with-db sql/with-query-results
+    res ["select * from users limit 10"] (doall res)))
+
 
 ;; The pdfs table operations
 (defn create-pdf-record [pdf-record]
@@ -38,9 +42,11 @@
     res ["select * from pdfs where userid = ? and categoery = ? and name = ?"
          username categoery name] (first res)))
 
-(defn get-pdfs []
+(defn get-pdfs [order-by & limit]
   (with-db sql/with-query-results
-    res ["select * from pdfs"] (doall res)))
+    res [(str "select * from pdfs order by " order-by " desc" (if limit 
+                                                                (str " limit " (first limit))))] 
+    (doall res)))
 
 ;; use userid categoery and name can find an only pdf record
 (defn update-pdf-attr [userid categoery name param]

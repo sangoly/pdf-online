@@ -8,7 +8,7 @@
     :users
     [:id "varchar(32) PRIMARY KEY not null"]
     [:pass "varchar(100) not null"]
-    [:timestamp "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"]
+    [:timestamp "TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP"]
     [:superuser "boolean default false not null"]
     [:statewords "varchar(200) not null"]
     [:image "varchar(100)"]))
@@ -23,7 +23,7 @@
     [:introduce "varchar(300)"]
     [:goodtimes "Integer not null default 0"]
     [:badtimes "Integer not null default 0"]
-    [:timestamp "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"]))
+    [:timestamp "TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP"]))
 
 ;;DANGEROUS OPERATION
 (defn drop-table [table]

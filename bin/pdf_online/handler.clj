@@ -15,10 +15,12 @@
             [ring.middleware.anti-forgery :as anti-forgery]
             ;; For template error handle
             [selmer.middleware :refer [wrap-error-page]]
-            [environ.core :refer [env]])
+            [environ.core :refer [env]]
+            [selmer.filters :refer [add-filter!]])
   (:import [java.io File]))
 
 (defn init []
+  (add-filter! :mytime (fn [x] (str "ff" "me"))) 
   (println "pdf-online is starting"))
 
 (defn user-page [_]

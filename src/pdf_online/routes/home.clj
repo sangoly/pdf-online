@@ -9,8 +9,8 @@
   (if (session/get :user)
     ;; Categoeries shouble be fill with the user's metadata
 	  (layout/my-render "login.html" {:categoeries ["default" "c++" "java" "clojure"]
-	                                  :pdfItems (db/get-pdfs)})
-	  (layout/my-render "index.html" {})))
+	                                  :pdfItems (db/get-pdfs "clicktimes")})
+	  (layout/my-render "index.html" {:newpdfs (db/get-pdfs "timestamp" "20")})))
 
 (defroutes home-routes
   (GET "/" [] (home)))

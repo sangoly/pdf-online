@@ -16,12 +16,13 @@
 		<link rel="stylesheet" type="text/css" href="{{context}}/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="{{context}}/css/bootstrap-theme.min.css">
 	</head>
-	<body>
+	<body><!-- style="background-color:#81C0C0;" -->
 		<div class="header">
 			{% block header %}{% endblock %}
 		</div>
 		<div class="content">
-			<div class="alert alert-warning" role="alert" style="text-align: center;">
+			<div class="alert alert-warning" role="alert" 
+			style="text-align: center;margin-top:-19px;">
 				警告：“类别名称”暂不支持中文
 			</div>
 			{% if errors %}
@@ -33,11 +34,10 @@
 					</ul>
 				</div>
 			{% endif %}
-			{% block content %}
-				{% if pdfItems %}
-					{% include "pdf_online/template/pdf_list_form.html" %}
-				{% endif %}
-			{% endblock %}
+			{% if pdfItems %}
+				{% include "pdf_online/template/pdf_list_form.html" %}
+			{% endif %}
+			{% block content %}{% endblock %}
 		</div>
 		<div class="footer">
 			{% block footer %}{% endblock %}

@@ -3,13 +3,49 @@
 <div class="container">
 	<div class="jumbotron">
 	  <div class="row">
-  		<div class="col-md-3">
-  			这是
-  		</div>
   		<div class="col-md-2">
-  			<h1>巨幕</h1>
-  		</div>
+        <img src="{{context}}/img/git_image.jpg" alt="显示头像" class="img-circle"
+             style="height:140px;width:140px;">
+      </div>
+      <div class="col-md-10">
+        <h1 style="font-family: cursive;">欢迎来到PDF-Online</h1>
+        <p style="text-align:right;">---扯淡斯基</p>
+      </div>
   	</div>
 	</div>
+</div>
+<div class="container">
+  {% for pdf in newpdfs %}
+  <div class="row user-pdf-info">
+    <div class="col-md-2 user-image-block">     
+      <img src="{{context}}/{{pdf.userid}}/head-image" class="img-thumbnail head-image">
+      <p>{{pdf.userid}}</p>     
+    </div>
+    <div class="col-md-10 user-pdf-block">
+      <div class="row">
+        <div class="col-md-2"><p>PDF名称：</p></div>
+        <a href="{{context}}/{{pdf.userid}}/{{pdf.categoery}}/{{pdf.name}}" target="_blank">
+          <div class="col-md-9"><p>{{pdf.name}}</p></div>
+        </a>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><p>上传时间：</p></div>
+        <div class="col-md-9"><p>{{pdf.timestamp|str}}</p></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><p>阅 读 量：</p></div>
+        <div class="col-md-9"><p>{{pdf.clicktimes}}</p></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><p>所属分类：</p></div>
+        <div class="col-md-9"><p>{{pdf.categoery}}</p></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><p>简    介：</p></div>
+        <div class="col-md-9"><p>{{pdf.introduce}}</p></div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}

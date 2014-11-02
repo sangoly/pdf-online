@@ -1,5 +1,5 @@
 (ns pdf-online.routes.auth
-  (:require [compojure.core :refer [defroutes POST GET]]
+  (:require [compojure.core :refer [defroutes POST GET ANY]]
             [noir.util.crypt :as crypt]
             [noir.session :as session]
             [noir.response :as resp]
@@ -7,7 +7,8 @@
             [noir.util.route :refer [restricted]]
             [pdf-online.models.db :as db]
             [pdf-online.views.layout :as layout]
-            [pdf-online.util :as util])
+            [pdf-online.util :as util]
+            [ring.util.response :as ring-resp])
   (:import [java.io File]))
 
 (def valid-image-extends ["jpeg" "png" "gif"])
@@ -99,9 +100,16 @@
   (session/clear!)
   (resp/redirect "/"))
 
+(defn serve-head-image [username]
+  (let [image (:image (db/get-user username))]
+    (if (empty? image)
+      (ring-resp/file-response (util/join-path-parts "default" "default_headimage.jpg"))
+      (ring-resp/file-response (util/join-path-parts username util/image image)))))
+
 ;; The routes for auth 
 (defroutes auth-routes
   (POST "/register" [headimage username pass pass1]
         (hand-registration headimage username pass pass1))        
   (POST "/login" [username pass] (handle-login username pass))
-  (GET "/logout" [] (handle-logout)))
+  (GET "/logout" [] (handle-logout))
+  (GET "/:username/head-image" [username] (serve-head-image username)))

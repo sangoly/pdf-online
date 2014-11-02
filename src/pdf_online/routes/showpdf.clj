@@ -5,12 +5,12 @@
             [ring.util.response :as resp]))
 
 (defn hand-user-cate-name-request [userid categoery name]
-;  (try
+  (try
     (db/update-pdf-attr userid categoery name 
                         {:clicktimes
                          (+ (:clicktimes (db/get-pdf-by-inden userid categoery name)) 1)})
-;    (catch Exception e
-;      (println "update clicktime error")))
+    (catch Exception e
+      (println "update clicktime error")))
   (resp/file-response (util/join-path-parts userid util/pdf categoery name)))
 
 (defroutes showpdf-routes
