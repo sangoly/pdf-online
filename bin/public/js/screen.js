@@ -76,3 +76,23 @@ $(function (){
     });
     $('span.blueBall').text(Math.ceil((Math.random() * 100) % 17));
 });
+
+
+// Random color
+function getColorByRandom(colorList){
+    var colorIndex = Math.floor(Math.random() * colorList.length);
+    var color = colorList[colorIndex];
+    //colorList.splice(colorIndex, 1);
+    return color;
+} 
+
+function rectCellRandomColor() {
+    var colorList = ["#D6D6AD", "#B3D9D9", "#FFE4CA", "#D2E9FF", "#FFB5B5", "#FFE6FF"];
+    $('.user-pdf-block').each(function() {       
+        $(this).css("background-color", getColorByRandom(colorList));
+    });
+}
+
+$(function() {
+    rectCellRandomColor();
+});

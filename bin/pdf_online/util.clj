@@ -36,6 +36,7 @@
 (defn ensure-exists [path]
   (println path)
   (let [dir (File. path)]
+    (println (.getAbsolutePath dir))
     (if-not (.exists dir)
       (.mkdirs dir))))
 

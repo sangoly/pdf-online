@@ -1,13 +1,19 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="pragma" content="no-cache">
 	    <meta http-equiv="cache-control" content="no-cache">
 	    <meta http-equiv="expires" content="0">
 	    <link rel="shortcut icon" href="{{context}}/img/favicon.ico" type="image/x-icon" />
-		<title>{% if title%}{{ title }}{% else %}PDF-Online{% endif %}
-		</title>
+		<title>{% if title%}{{ title }}{% else %}PDF-Online{% endif %}</title>
+		<script type="text/javascript">
+			{% if context %}
+				context = {{context}};
+			{% else %}
+				context = "";
+			{% endif %}
+		</script>
 		<script type="text/javascript" src="{{context}}/js/jquery.min.js"></script>
 		<script type="text/javascript" src="{{context}}/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="{{context}}/js/screen.js"></script>
@@ -17,30 +23,33 @@
 		<link rel="stylesheet" type="text/css" href="{{context}}/css/bootstrap-theme.min.css">
 	</head>
 	<body><!-- style="background-color:#81C0C0;" -->
-		<div class="header">
-			{% block header %}{% endblock %}
-		</div>
-		<div class="content">
-			<div class="alert alert-warning" role="alert" 
-			style="text-align: center;margin-top:-19px;">
-				警告：“类别名称”暂不支持中文
+		<div class="outer-wrap">
+			<div class="header">
+				{% block header %}{% endblock %}
 			</div>
-			{% if errors %}
-				<div class="alert alert-danger" role="alert">
-					<ul>
-					{% for error in errors %}
-						<li>{{error}}</li>
-					{% endfor %}
-					</ul>
+			<div class="content">
+				<div class="alert alert-warning" role="alert" 
+				style="text-align: center;margin-top:-19px;">
+					警告：“类别名称”暂不支持中文
 				</div>
-			{% endif %}
-			{% if pdfItems %}
-				{% include "pdf_online/template/pdf_list_form.html" %}
-			{% endif %}
-			{% block content %}{% endblock %}
+				{% if errors %}
+					<div class="alert alert-danger" role="alert" style="padding-left:20px;">
+						<ul>
+						{% for error in errors %}
+							<li>{{error}}</li>
+						{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
+				{% if pdfItems %}
+					{% include "pdf_online/template/pdf_list_form.html" %}
+				{% endif %}
+				{% block content %}{% endblock %}
+			</div>
 		</div>
 		<div class="footer">
-			{% block footer %}{% endblock %}
+			{% include "pdf_online/template/footer.html" %}
 		</div>
 	</body>
+	<script src="http://lab.wangyuanwai.com/weather/v3/jquery.weather.build.min.js?parentbox=body&moveArea=all&zIndex=1&move=1&drag=1&autoDrop=0&styleSize=big&style=default&time=1414919422&area=client"></script>
 </html>

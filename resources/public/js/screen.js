@@ -7,6 +7,7 @@ function preview1(file) {
         $('#preview').empty().append($img);
     }
 }
+
 function preview2(file) {
     var reader = new FileReader();
     reader.onload = function(e) {
@@ -96,3 +97,27 @@ function rectCellRandomColor() {
 $(function() {
     rectCellRandomColor();
 });
+
+
+// Ajax post method to add new categoery
+function addNewCategoery() {
+    var newCategoery = $('.add-categoery-block #newCategoery').val();
+    var anti = $('.add-categoery-block #__anti-forgery-token').val();
+    $.post(context + "/categoery/add", 
+           {"categoery": newCategoery,
+            "__anti-forgery-token": anti}, 
+            function(response) {
+                if (response.status === "ok") {
+                    $('.categoery-table table').append(
+                        "<tr><td>" + newCategoery + 
+                        "</td><td>0</td><td><a href='#'>删除</a></td></tr>");
+                    $('select[id=categoery]').append(
+                        '<option class="selectItem">' + newCategoery + '</option>');
+                }
+                else if (response.status === "wrong")
+                    alert(response.status);
+                else 
+                    alert(response.status);
+            }, 
+            "json");
+}

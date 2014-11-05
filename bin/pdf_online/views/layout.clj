@@ -9,7 +9,7 @@
             [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
 (defn utf-8-response [html]
-  (content-type (response html) "text/html; charset=utf-8"))
+  (content-type (response html) "text/html; charset=UTF-8"))
 
 (deftype RenderablePage [template params]
   Renderable

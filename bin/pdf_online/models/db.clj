@@ -54,3 +54,29 @@
     :pdfs ["userid = ? and categoery = ? and name = ?"
            userid categoery name] param)
   (println "update complete"))
+
+;; The pdfCategoeries table operations
+(defn create-categoery-record [pdf-categoery-record]
+  (with-db sql/insert-record :pdfCategoeries pdf-categoery-record))
+
+(defn delete-categoery [userid categoery]
+  (with-db sql/delete-rows :pdfCategoeries
+    ["userid = ? and categoery = ?" userid categoery]))
+
+(defn get-user-categoeries [userid]
+  (with-db sql/with-query-results res
+    ["select * from pdfCategoeries where userid = ?" userid] (doall res)))
+
+(defn valid-user-categoeries [userid categoery]
+  (with-db sql/with-query-results res
+    ["select * from pdfCategoeries where userid= ? and categoery = ?" userid categoery]
+    (first res)))
+
+(defn get-pdfCategoeries-count [userid categoery]
+  (with-db sql/with-query-results
+    res ["select * from pdfCategoeries where userid = ? and categoery = ?" userid categoery]
+    (first res)))
+
+(defn update-pdfCategoeries-count [userid categoery param]
+  (with-db sql/update-values :pdfCategoeries
+    ["userid = ? and categoery = ?" userid categoery] param))

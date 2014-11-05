@@ -19,7 +19,7 @@
 						  	<div class="col-md-7">
 	        				<label for="pdfbutn">上传文件</label>					  	
         					<input type="file" id="pdfbutn" style="width:100px;" name="pdfbutn"
-        								 onchange="updateFileName()">
+        						   onchange="updateFileName()" accept="application/pdf">
 	        			</div>
 	        			<div class="col-md-4" id="pdfimg">
 						  		<img style="height:100px;width:100px;border:1;" 
@@ -38,8 +38,8 @@
 				  	<label>请选择类别</label>
 				  	<select class="form-control" id="categoery" name="categoery"
 				  			style="font-size: 18px;">
-					  {% for item in categoeries %}
-					  	<option class="selectItem">{{item}}</option>
+					  {% for categoery in categoeries %}
+					  	<option class="selectItem">{{categoery.categoery}}</option>
 					  {% endfor %}
 					</select>
 				  </div>

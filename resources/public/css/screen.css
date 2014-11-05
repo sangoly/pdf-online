@@ -2,10 +2,24 @@ body {
     color: #555;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 13px;
+
 }
 
-h1 {
-    text-align: center;
+/*Config the footer*/
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+}
+.outer-wrap {
+	min-height: 100%;
+}
+.footer {
+	height: 50px;
+	margin: -50px auto 0;
 }
 
 
@@ -24,6 +38,8 @@ span.blueBall {
 	margin-right: 3px;
 }
 
+
+/*The index page*/
 .user-pdf-info {
 	margin-top: 8px;
 }
@@ -51,4 +67,34 @@ span.blueBall {
 .user-pdf-info .user-pdf-block p {
 	font-family: inherit;
 	font-size: large;
+}
+
+
+/*The categoery page*/
+.category-manage-outer {
+	padding-left: 300px;
+	padding-right: 300px;
+}
+
+.category-manage-outer .user-info img {
+	height: 50px;
+	width: 50px;
+}
+
+.category-manage-outer .user-info a {
+	margin-left: 15px;
+}
+
+.category-manage-outer .categoery-table {
+	margin-top: 25px;
+	font-size: large;
+	font-family: fantasy;
+}
+
+.category-manage-outer .categoery-table tr {
+	height: 50px;
+}
+
+.category-manage-outer .add-categoery-block {
+	margin-top: 30px;
 }

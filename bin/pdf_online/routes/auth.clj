@@ -72,6 +72,7 @@
       (db/create-user {:id username, :pass (crypt/encrypt pass),
                        :superuser false, :statewords util/default-statewords,
                        :image (headimage-path headimage)})
+      (db/create-categoery-record {:userid username :categoery "default"})
       (util/create-new-user-folder username)
       (if-not (empty? (:filename headimage))
         (util/save-upload-file headimage (util/join-path-parts username util/image)))

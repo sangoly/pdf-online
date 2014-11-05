@@ -1,53 +1,3 @@
-(join-path-parts)
-exit
-(use )
-(use 'pdf-online.util)
-(create-new-user-folder "sangoly")
-(create-new-user-folder "dkfj")
-exit
-(use 'pdf-online.routes.auth)
-exit
-(use 'pdf-online.routes.auth)
-exit
-(use 'pdf-online.routes.auth)
-exit
-(use 'pdf-online.routes.auth)
-exit
-(use 'pdf-online.routes.auth)
-(hand-registration "headimage" "sangoly" "123456" "123456")
-(pst)
-(valid-register "sangoly" "123456" "123456")
-(valid-register? "sangoly" "123456" "123456")
-(valid-register? :"sangoly" :"123456" :"123456")
-exit
-(def ff {:headimage "headimage" :username "username" :pass "123456" :pass1 "123456"})
-(use 'pdf-online.routes.auth)
-(def ff {:headimage "headimage" :username "username" :pass "123456" :pass1 "123456"})
-(hand-registration {:headimage "headimage" :username "sangoly" :pass "123456" :pass1 "123456"})
-(hand-registration ["headimage" "sangoly" "123456" "123456"])
-(hand-registration "headimage" "sangoly" "123456" "123456")
-exit
-(use 'pdf-online.models.db)
-(create-user {:id "sangoly" :pass "123456" :superuser "0" :statewords "hello" :image "head"})
-(create-user {:id "sangoly" :pass "123456" :superuser false :statewords "hello" :image "head"})
-(delete "sangoly")
-(delete :sangoly)
-(delete-user "sangoly")
-(use 'pdf-online.models.db)
-(delete-user :sangoly)
-(delete-user "sangoly")
-(use 'pdf-online.util)
-(create-new-user-folder "sangoly")
-(use 'pdf-online.models.schema)
-exit
-(use 'pdf-online.models.schema)
-(drop-table "users")
-(create-the-user-table)
-(create-user-table)
-(ns 'pdf-online.util)
-(ns pdf-online.util)
-(create-new-user-folder "ss")
-(::create-new-user-folder "ss")
 (ns user)
 dir
 (use 'pdf-online.util)
@@ -498,3 +448,53 @@ exit
 (drop-table :users)
 (create-user-table)
 (create-pdfs-table)
+exit
+(use 'pdf-online.models.schema)
+(delete-user "sangoly")
+(use 'pdf-online.models.db)
+(delete-user "sangoly")
+exit
+(use 'pdf-online.routes.auth)
+(delete-account "doublesnow")
+(delete-account "sangoly")
+exit
+(println "默认分组")
+(use 'ring.util.codec)
+(println "默认分组")
+(println (percent-decode "默认分组"))
+(println (percent-decode "默认分组"" "UTF-8"))
+;
+(println (percent-decode "默认分组"" "UTF8"))
+(println (percent-encode "Ĭ�Ϸ���")) "utf-8"
+(use 'pdf-online.routes.auth)
+(delete-account "sangoly")
+(use 'pdf-online.routes.auth)
+(delete-account "sangoly")
+(user )
+(use ' )
+(use 'pdf-online.routes.auth)
+(delete-account "sangoly")
+(use 'pdf-online.models.schema)
+(create-pdf-categoeries-table)
+exit
+(use 'pdf-online.models.schema)
+(create-pdf-categoeries-table)
+(delete-account "sangoly")
+(use 'pdf-online.routes.auth')
+(use 'pdf-online.routes.auth)
+exit
+(use 'pdf-online.routes.auth)
+(delete-account "sangoly")
+exit
+(use 'pdf-online.routes.auth)
+(delete-account "sangoly")
+(use 'pdf-online.models.schema)
+(drop-table :pdfCategoeries)
+(create-pdf-categoeries-table)
+exit
+(use 'pdf-online.routes.auth)
+(delete-account "sangoly")
+(use 'pdf-online.routes.auth)
+(delete-account "sangoly")
+(use 'pdf-online.util)
+(ensure-exists "sssss")

@@ -2,10 +2,24 @@ body {
     color: #555;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 13px;
+
 }
 
-h1 {
-    text-align: center;
+/*Config the footer*/
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+}
+.outer-wrap {
+	min-height: 100%;
+}
+.footer {
+	height: 50px;
+	margin: -50px auto 0;
 }
 
 
@@ -22,4 +36,33 @@ span.blueBall {
 	float: left;
 	margin-top: 10px;
 	margin-right: 3px;
+}
+
+.user-pdf-info {
+	margin-top: 8px;
+}
+
+.user-pdf-info .user-image-block {
+	text-align: center;
+}
+
+.user-pdf-info .user-image-block .head-image {
+	height: 110px;
+	width: 110px;
+}
+
+.user-pdf-info .user-image-block p {
+	font-size: large;
+}
+
+.user-pdf-info .user-pdf-block {
+	text-align: justify; 
+	text-justify: distribute-all-lines; 
+	text-align-last: justify; 
+	text-indent: 10px; 
+}
+
+.user-pdf-info .user-pdf-block p {
+	font-family: inherit;
+	font-size: large;
 }

@@ -25,6 +25,14 @@
     [:badtimes "Integer not null default 0"]
     [:timestamp "TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP"]))
 
+(defn create-pdf-categoeries-table []
+  (db/with-db sql/create-table
+    :pdfCategoeries
+    [:userid "varchar(32) REFERENCES users(id) ON DELETE CASCADE not null"]
+    [:categoery "varchar(50) not null"]
+    [:count "Integer not null default 0"]
+    [:timestamp "TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP"]))
+
 ;;DANGEROUS OPERATION
 (defn drop-table [table]
   (db/with-db sql/drop-table table))
