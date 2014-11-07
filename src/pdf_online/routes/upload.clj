@@ -12,16 +12,18 @@
 
 (def valid-file-extends ["pdf"])
 
-(defn valid-file? [filename content-type]
+(defn valid-file? [filename content-type categoery]
   (vali/rule (not (empty? filename))
              [:file "没有选择要上传的文件"])
   (vali/rule (valid-extend? content-type valid-file-extends)
              [:type "必需上传PDF文件"])
-  (not (vali/errors? :file :type)))
+  (vali/rule (not (empty? categoery))
+             [:categoery "分组信息不能空"])
+  (not (vali/errors? :file :type :categoery)))
 
 (defn hand-upload-file 
   [{:keys [filename content-type] :as file} categoery introduce]
-  (if (valid-file? filename content-type)
+  (if (valid-file? filename content-type categoery)
     (if (nil? (db/get-pdf-by-inden (session/get :user) categoery filename))
 	    (try
 	      (db/create-pdf-record {:userid (session/get :user) :categoery categoery
@@ -41,5 +43,4 @@
 
 (defroutes upload-routes
   (POST "/upload_file" [pdfbutn categoery introduce]
-;        (restricted (hand-upload-file pdfbutn categoery introduce))
-        (restricted (util/ensure-exists (codec/form-decode introduce "ISO-8859-1")))))
+        (restricted (hand-upload-file pdfbutn categoery introduce))))

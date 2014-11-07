@@ -37,6 +37,10 @@
   (with-db sql/delete-rows :pdfs 
     ["userid = ? and categoery = ? and name = ?" username categoery name]))
 
+(defn delete-pdf-categoery [username categoery]
+  (with-db sql/delete-rows :pdfs
+    ["userid = ? and categoery = ?" username categoery]))
+
 (defn get-pdf-by-inden [username categoery name]
   (with-db sql/with-query-results
     res ["select * from pdfs where userid = ? and categoery = ? and name = ?"

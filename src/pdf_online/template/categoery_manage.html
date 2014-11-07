@@ -5,6 +5,11 @@
 			<img src="{{context}}/{{user}}/head-image" class="img-circle">
 			<a href="#">用户 {{user}}</a>
 		</div>
+		<div class="alert alert-danger" role="alert" style="margin-top:15px;">
+			<ul>
+				<li>警告：删除分组将会删除分组内所有文件，请谨慎操作.</li>
+			</ul>
+		</div>
 		<div class="categoery-table">
 			<table class="table table-striped">
 				<tr>
@@ -16,7 +21,7 @@
 				<tr>
 					<td>{{categoery.categoery}}</td>
 					<td>{{categoery.count}}</td>
-					<td><a href="#">删除</a></td>
+					<td><a href="javascript:void(0)">删除</a></td>
 				</tr>
 				{% endfor %}
 			</table>

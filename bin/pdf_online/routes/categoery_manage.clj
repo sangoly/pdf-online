@@ -5,7 +5,9 @@
             [pdf-online.models.db :as db]
             [noir.session :as session]
             [noir.util.route :refer [restricted]]
-            [noir.response :as resp]))
+            [noir.response :as resp]
+            [clojure.string :refer [blank? trim]])
+  (:import [java.io File]))
 
 (defn handle-categoery-manage []
   (layout/my-render "categoery_manage.html" 
@@ -14,19 +16,26 @@
 (defn handle-categoery-add [new-categoery]
   (if (db/valid-user-categoeries (session/get :user) new-categoery)
     (resp/json {:status "repeat"})
-    (try 
-    (db/create-categoery-record {:userid (session/get :user)
-                                 :categoery new-categoery})
-      (resp/json {:status "ok"})
-      (catch Exception ex
-        (resp/json {:status "wrong"})))))
+    (if (blank? new-categoery)
+      (resp/json {:status "null"})
+      (try 
+		    (db/create-categoery-record {:userid (session/get :user)
+		                                 :categoery new-categoery})
+		      (resp/json {:status "ok"})
+		      (catch Exception ex
+		        (resp/json {:status "wrong"}))))))
 
 (defn handle-categoery-delete [categoery]
   (try
     (db/delete-categoery (session/get :user) categoery)
-    (println "success")
+    (db/delete-pdf-categoery (session/get :user) categoery)
+    (let [path (util/join-path-parts (session/get :user) util/pdf categoery)
+          dir (File. path)]
+      (if (.exists dir)
+        (util/delete-directory path)))
+    (resp/json {:status "ok"})
     (catch Exception ex
-      (println "wrong"))))
+      (resp/json "wrong"))))
 
 (defroutes categoery-manage-routes
   (GET "/categoery/manage" []
@@ -34,4 +43,4 @@
   (POST "/categoery/add" [categoery]
         (restricted (handle-categoery-add categoery)))
   (POST "/categoery/delete" [categoery]
-        (restricted (handle-categoery-delete categoery))))
+        (restricted (handle-categoery-delete (trim categoery)))))

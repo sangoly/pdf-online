@@ -60,6 +60,8 @@
     (let [user-root-path (util/join-path-parts username)]
       (if (.exists (File. user-root-path))
         (util/delete-directory user-root-path)))
+;    (session/clear!)
+;    (resp/redirect "/")
     (catch Exception ex
       (println (.getMessage ex)))))
 ;      (session/put! :errors "删除用户出错")

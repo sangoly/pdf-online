@@ -1,14 +1,3 @@
-(ns user)
-dir
-(use 'pdf-online.util)
-(create-new-user-folder "ss")
-exit
-(use 'pdf-online.util)
-(create-new-user-folder "ss")
-(user 'pdf-online.util)
-(use 'pdf-online.util)
-(test-create-folder "sangoly")
-exit
 (use 'pdf-online.util)
 (test-create-folder ")
 (test-create-folder "1")
@@ -498,3 +487,14 @@ exit
 (delete-account "sangoly")
 (use 'pdf-online.util)
 (ensure-exists "sssss")
+exit
+(use 'pdf-online.routes.auth)
+(delete-account "sangoly")
+(delete-account "shabiwds")
+(use 'pdf-online.routes.auth)
+(delete-account "sangoly")
+(delete-account "shabiwds1")
+(blank? "    ")
+(clojure.string/blank? "    ")
+(clojure.string/trim "  fff  ")
+(clojure.string/blank? "")

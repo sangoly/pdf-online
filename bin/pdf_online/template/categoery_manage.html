@@ -16,7 +16,7 @@
 				<tr>
 					<td>{{categoery.categoery}}</td>
 					<td>{{categoery.count}}</td>
-					<td><a href="#">删除</a></td>
+					<td><a href="javascript:void(0)">删除</a></td>
 				</tr>
 				{% endfor %}
 			</table>
@@ -24,9 +24,9 @@
 		<div class="add-categoery-block">
 			<form class="form-inline" role="form" onsubmit="addNewCategoery(); return false;">
 			  <div class="form-group">
+			  	{% if antiforgery %}{{antiforgery|safe}}{%endif%}
 			    <input type="text" class="form-control" id="newCategoery" 
-			    placeholder="请输入新分组名">
-			    {% if antiforgery %}{{antiforgery|safe}}{%endif%}
+			    name="newCategoery" placeholder="请输入新分组名">
 			  </div>
 			  <button type="submit" class="btn btn-primary">添加分组</button>
 			</form>
