@@ -163,3 +163,38 @@ function addNewCategoery() {
             }, 
             "json");
 }
+
+
+// The function of adding comment
+function addComment() {
+    // first remove the error info
+    $('.newComment .commerrors li').remove();
+    var comment = $('.newComment textarea').val();
+    var infoArray = $('.pdfInfo .col-md-7 .row');
+    var pdfName = infoArray[0].getElementsByTagName('a')[0].innerText;
+    var owner = infoArray[2].getElementsByTagName('div')[1].innerText;
+    var categoery = infoArray[3].getElementsByTagName('div')[1].innerText; 
+    var anti = $('.newComment #__anti-forgery-token').val();
+    // remove the error info and input content
+    $('.newComment .commerrors li').remove();
+    $('.newComment #comment').val("");
+    $.post(context + "/addComment",
+           {"owner": owner,
+            "categoery": categoery,
+            "name": pdfName,
+            "content": comment,
+            "__anti-forgery-token": anti},
+            function(response) {
+                status = response.status;
+                if (status === "unlogin") 
+                    $('.newComment .commerrors').append("<li>请先登录</li>");
+                else if (status === "ok")
+                    $('.pdfComments .oldComment').append("<p>" + response.fromuser + 
+                        "(" + response.timestamp + ")" + "</p>" +
+                        "<p>" + response.content + "</p>" + 
+                        "<hr style='border:1px solid blue;' />");
+                else if (status === "error" || status === "warning")
+                    $('.newComment .commerrors').append("<li>" + response.contents + "</li>");
+            },
+            "json");
+}

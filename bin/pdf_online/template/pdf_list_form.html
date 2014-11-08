@@ -1,5 +1,5 @@
 <div class="container">
-	<table class="table table-striped">
+	<table class="table table-striped" id="pdfList">
 		<tr>
 			<th>名称</th>
 			<th>所有者</th>
@@ -10,9 +10,15 @@
 			<tr>
 				<td>
 					<img style="weight:25px;height:25px;" src="{{context}}/img/pdf_icon.png">
-					<a href="{{context}}/{{item.userid}}/{{item.categoery}}/{{item.name}}" 
+					<a href="{{context}}/read/{{item.userid}}/{{item.categoery}}/{{item.name}}" 
 					target="_blank">
-					{{item.name}}</a></td>
+					{{item.name}}</a>
+					<a href="{{context}}/detail/{{item.userid}}/{{item.categoery}}/{{item.name}}" 
+						 class="detail">详情</a>
+					<span>|</span>
+					<a href="{{context}}/read/{{item.userid}}/{{item.categoery}}/{{item.name}}" 
+					   class="read" target="_blank">阅读</a>
+				</td>
 				<td>{{item.userid}}</td>
 				<td>{{item.categoery}}</td>
 				<td>{{item.clicktimes}}</td>

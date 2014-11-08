@@ -84,3 +84,12 @@
 (defn update-pdfCategoeries-count [userid categoery param]
   (with-db sql/update-values :pdfCategoeries
     ["userid = ? and categoery = ?" userid categoery] param))
+
+;; The comments table operation
+(defn create-comment-record [comment-record]
+  (with-db sql/insert-record :comments comment-record))
+
+(defn get-pdf-comments [userid categoery name]
+  (with-db sql/with-query-results res
+    ["select * from comments where pdfowner = ? and pdfcategoery = ? and pdfname = ?" 
+     userid categoery name] (doall res)))

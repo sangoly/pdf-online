@@ -23,7 +23,8 @@
     [:introduce "varchar(300)"]
     [:goodtimes "Integer not null default 0"]
     [:badtimes "Integer not null default 0"]
-    [:timestamp "TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP"]))
+    [:timestamp "TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP"]
+    ["constraint pk_pdfs primary key(userid, categoery, name)"]))
 
 (defn create-pdf-categoeries-table []
   (db/with-db sql/create-table
@@ -32,6 +33,18 @@
     [:categoery "varchar(50) not null"]
     [:count "Integer not null default 0"]
     [:timestamp "TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP"]))
+
+(defn create-comments-table []
+  (db/with-db sql/create-table
+    :comments
+    [:pdfowner "varchar(32) not null"]
+    [:pdfcategoery "varchar(50) not null"]
+    [:pdfname "varchar(100) not null"]
+    [:fromuser "varchar(32) not null"]
+    [:touser "varchar(32)"]
+    [:timestamp "TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP"]
+    [:content "text not null"]
+    ["constraint comments foreign key(pdfowner, pdfcategoery, pdfname) references pdfs(userid, categoery, name) ON DELETE CASCADE"]))
 
 ;;DANGEROUS OPERATION
 (defn drop-table [table]

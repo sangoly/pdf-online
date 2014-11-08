@@ -1,0 +1,59 @@
+<div class="pdfDetailOuter">
+	<div class="row pdfInfo">
+		<div class="col-md-5">
+			<img src="{{context}}/img/pdf_icon.png" alt="pdf" class="img-rounded">
+		</div>
+		<div class="col-md-7">
+			<div class="row">
+				<div class="col-md-4">名称：</div>
+				<div class="col-md-8">
+					<a href="{{context}}/read/{{pdf.userid}}/{{pdf.categoery}}/{{pdf.name}}"
+					   target="_blank">{{pdf.name}}</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">上传时间：</div>
+				<div class="col-md-8">{{pdf.timestamp}}</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">拥有者：</div>
+				<div class="col-md-8">{{pdf.userid}}</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">类别：</div>
+				<div class="col-md-8">{{pdf.categoery}}</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">点击量：</div>
+				<div class="col-md-8">{{pdf.clicktimes}}</div>
+			</div>
+		</div>
+	</div>
+	<div class="pdfIntroduce">
+		<h3>简介：</h3>
+		<p>{{pdf.introduce}}</p>
+	</div>
+	<div class="pdfComments">
+		<h3>评论：</h3>
+		<div class="oldComment">
+			{% for comment in comments%}
+				<p>{{comment.fromuser}}({{comment.timestamp}})</p>
+				<p>{{comment.content}}</p>
+				<hr style="border:1px solid blue;" />
+			{% endfor %}
+		</div>
+		<div class="newComment">
+			<form role="form" onsubmit="addComment(); return false;">
+			  <div class="form-group">
+			    <h3>发表评论：</h3>
+			    <ul class="commerrors"></ul>
+			    <textarea id="comment" name="comment" rows="6" cols="40" 
+			    					placeholder="{%if comments%}请输入评论{%else%}还没有人进行评论，还不快抢沙发~~{%endif%}" 
+			    					style="resize:none;"></textarea>
+			  </div>
+			  {% if antiforgery %}{{antiforgery|safe}}{%endif%}
+		  	<button type="submit" class="btn btn-primary">提交</button>
+			</form>
+		</div>
+	</div>
+</div>

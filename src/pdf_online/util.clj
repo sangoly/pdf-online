@@ -7,6 +7,9 @@
 (defn get-template-path [basename]
   (join File/separator ["pdf_online" "template" basename]))
 
+;; The comment length
+(def comment-length 500)
+
 (def pdf "pdffiles")
 (def image "image")
 (def default-statewords "说点啥好呢？")
@@ -34,9 +37,7 @@
 
 ;; Handler the upload files
 (defn ensure-exists [path]
-  (println path)
   (let [dir (File. path)]
-    (println (.getAbsolutePath dir))
     (if-not (.exists dir)
       (.mkdirs dir))))
 
