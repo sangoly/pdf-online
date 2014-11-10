@@ -26,6 +26,10 @@
 
 (defn get-users []
   (with-db sql/with-query-results
+    res ["select * from users"] (doall res)))
+
+(defn get-users []
+  (with-db sql/with-query-results
     res ["select * from users limit 10"] (doall res)))
 
 (defn update-statusword [userid param]
@@ -105,3 +109,16 @@
   (with-db sql/with-query-results res
     ["select * from comments where pdfowner = ? and pdfcategoery = ? and pdfname = ?" 
      userid categoery name] (doall res)))
+
+;; The favorite table operation
+(defn create-favorite-record [favorite-record]
+  (with-db sql/insert-record :favorites favorite-record))
+
+(defn delete-favorite-record [userid pdf-owner pdf-categoery pdf-name]
+  (with-db sql/delete-rows :favorites
+    ["userid = ? and pdfowner = ? and pdfcategoery = ? and pdfname = ?"
+     userid pdf-owner pdf-categoery pdf-name]))
+
+(defn get-favorites-by-userid [userid]
+  (with-db sql/with-query-results res
+    ["select * from favorites where userid = ?" userid] (doall res)))

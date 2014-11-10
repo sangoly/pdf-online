@@ -1,0 +1,34 @@
+{% extends "pdf_online/template/login.html" %}
+{% block content %}
+<div id="myFavoritePdfs">
+	<table class="table table-striped" id="pdfList">
+		<tr>
+			<th>名称</th>
+			<th>所有者</th>
+			<th>类别</th>
+			<th>操作</th>
+		</tr>
+		{% for item in pdfItems %}
+			<tr>
+				<td>
+					<img style="weight:25px;height:25px;" src="{{context}}/img/pdf_icon.png">
+					<a href="{{context}}/read/{{item.pdfowner}}/{{item.pdfcategoery}}/{{item.pdfname}}" 
+					target="_blank">
+					{{item.pdfname}}</a>
+					<a href="{{context}}/detail/{{item.pdfowner}}/{{item.pdfcategoery}}/{{item.pdfname}}" 
+						 class="detail">详情</a>
+					<span>|</span>
+					<a href="{{context}}/read/{{item.pdfowner}}/{{item.pdfcategoery}}/{{item.pdfname}}" 
+					   class="read" target="_blank">阅读</a>
+				</td>
+				<td><a href="{{context}}/user/{{item.pdfowner}}">{{item.pdfowner}}</a></td>
+				<td>{{item.pdfcategoery}}</td>
+				<td>
+					<a href="javascript:void(0)" class="favo"
+						 onclick="deleteFavorite(this, '{{item.pdfowner}}', '{{item.pdfcategoery}}', '{{item.pdfname}}'); return false;">取消收藏</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

@@ -32,3 +32,15 @@ $(function() {
         });
     });
 });
+
+function deletePdf(obj, userid, categoery, name) {
+    var targetAddr = context + "/delete" + "/" + userid + "/" + categoery + "/" + name;
+    $.get(targetAddr, {}, function (response) {
+        if (response.status === "ok") {
+            $(obj).parent().parent().remove();
+            var tmp = $('.refUserCategoery ul li a.' + categoery).next();
+            tmp.text(response.contents);
+        } else 
+            $('#userDetailPage .userPageError ul').append("<li>" + response.contents + "</li>");
+    }, "json"); 
+}

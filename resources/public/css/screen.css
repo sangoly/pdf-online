@@ -108,7 +108,7 @@ span.blueBall {
 	margin-left: 15px;
 }
 
-#pdfList .detail, #pdfList .read {
+#pdfList .detail, #pdfList .read, #pdfList .favo {
 	font-size: smaller;
 }
 
@@ -194,4 +194,40 @@ span.blueBall {
 
 #userDetailPage #pdfList > tbody > tr:nth-child(1) > th:nth-child(1) {
 	width: 450px;
+}
+
+#userDetailPage .userPageError ul li {
+	color: red;
+}
+
+
+/*Favorite page*/
+#myFavoritePdfs {
+	padding-left: 300px;
+	padding-right: 300px;
+}
+
+/* Users page */
+#userInfoBlock {
+	width: 160px;
+	height: 300px;
+	text-align: center;
+	float: left;
+	border-style: groove;
+	border-radius: 10px;
+	margin: 10px 10px 10px 10px;
+}
+
+#userInfoBlock img {
+	width: 140px;
+	height: 140px;
+}
+
+#userInfoBlock .username {
+	font-size: x-large;
+}
+
+#userInfoBlock > p.statewords {
+	text-align: left;
+	color: darkslateblue;
 }

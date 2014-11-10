@@ -1,0 +1,12 @@
+<div class="container">
+	{% for item in users %}
+	<div id="userInfoBlock">
+		<a href="{{context}}/user/{{item.id}}">
+			<img src="{{context}}/{{item.id}}/head-image">
+			<p class="username">{{item.id}}</p>
+		</a>
+		<p class="timestamp">注册日期:{{item.timestamp|mytimee}}</p>
+		<p class="statewords">{{item.statewords}}</p>
+	</div>
+	{% endfor %}
+</div>

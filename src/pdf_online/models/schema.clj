@@ -46,6 +46,14 @@
     [:content "text not null"]
     ["constraint comments foreign key(pdfowner, pdfcategoery, pdfname) references pdfs(userid, categoery, name) ON DELETE CASCADE"]))
 
+(defn create-favorite-table []
+  (db/with-db sql/create-table
+    :favorites
+    [:userid "varchar(32) REFERENCES users(id) ON DELETE CASCADE not null"]
+    [:pdfowner "varchar(32) not null"]
+    [:pdfcategoery "varchar(50) not null"]
+    [:pdfname "varchar(100) not null"]
+    ["constraint favorites foreign key(pdfowner, pdfcategoery, pdfname) references pdfs(userid, categoery, name) ON DELETE CASCADE"]))
 ;;DANGEROUS OPERATION
 (defn drop-table [table]
   (db/with-db sql/drop-table table))

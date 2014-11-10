@@ -13,13 +13,25 @@
 (defn valid-request? [str rules]
   (some #(= (.toLowerCase str) %) rules))
 
+(defn favorite-exist? [pdf cur-favorite]
+  (some #(and (= (:userid pdf) (:pdfowner %))
+              (= (:categoery pdf) (:pdfcategoery %))
+              (= (:name pdf) (:pdfname %))) 
+        cur-favorite))
+
+(defn make-favorite [pdfItems]
+  (if (session/get :user)
+    (let [cur-favorite (db/get-favorites-by-userid (session/get :user))]
+      (map #(if (favorite-exist? % cur-favorite) (assoc % :favorite "favo") %) pdfItems))
+    pdfItems))
+
 (defn get-login-argument [userid categoery orderby]
   (let [current-user (session/get :user)
         argument-dict {:categoeries (db/get-user-categoeries current-user)
                        :refUser (db/get-user userid)
                        :refUserCategoeries (db/get-user-categoeries userid)
                        :currCate categoery
-                       :pdfItems (db/get-pdfs-by-owner userid categoery orderby)}]
+                       :pdfItems (make-favorite (db/get-pdfs-by-owner userid categoery orderby))}]
     (if (and current-user (= current-user userid))
       (assoc argument-dict :currentuserjs "currentuser.js")
       argument-dict)))
@@ -52,10 +64,24 @@
     (handle-user-page-request userid categoery order-by)
     nil))
 
+(defn handle-users-page-request [] 
+  (let [users (db/get-users)]
+    (if (session/get :user)
+      (layout/my-render "login_users_page.html" {:users users})
+      (layout/my-render "unlogin_users_page.html" {:users users}))))
+
+(defn handle-favorite-page-request []
+  (layout/my-render "my_favorite.html" {:pdfItems 
+                                        (db/get-favorites-by-userid (session/get :user))}))
+
 (defroutes user-routes
   (GET "/user/status/update" [newStatusWords]
         (restricted (handle-update-status-request newStatusWords)))
   (GET "/user/:userid" [userid]
        (handle-user-page-request-order userid "all" "clicktimes"))
   (GET "/user/:userid/:categoery" [userid categoery orderby]
-       (handle-user-page-request-order userid categoery orderby)))
+       (handle-user-page-request-order userid categoery orderby))
+  (GET "/users" []
+       (handle-users-page-request))
+  (GET "/favorite" []
+       (restricted (handle-favorite-page-request))))

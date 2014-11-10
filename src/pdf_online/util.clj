@@ -16,7 +16,7 @@
 (def default-headimage "default_headimage.jpg")
 ;; The consts
 (def user-file-root "userfiles")
-(def one-level-folders ["pdffiles" "image" "test" "中文测试"])
+(def one-level-folders ["pdffiles" "image"])
 
 (defn join-path-parts [& parts]
   (join File/separator (cons user-file-root parts)))

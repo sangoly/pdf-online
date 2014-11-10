@@ -198,3 +198,37 @@ function addComment() {
             },
             "json");
 }
+
+function addFavorite(obj, userid, categoery, name) {
+    $.get(context + "/favorite/add",
+          {"userid": userid,
+           "categoery": categoery,
+           "name": name},
+          function(response) {
+              if (response.status === "ok") {
+                  $(obj).text(response.contents);
+                  $(obj).attr('onclick', "deleteFavorite(this, '" + userid + "', '" + categoery + 
+                    "', '" + name + "'); return false;");
+              }
+              else
+                  alert(response.contents);
+          },
+          "json");
+}
+
+function deleteFavorite(obj, userid, categoery, name) {
+    $.get(context + "/favorite/delete",
+          {"userid": userid,
+           "categoery": categoery,
+           "name": name},
+          function(response) {
+              if (response.status === "ok") {
+                  $(obj).text(response.contents);
+                  $(obj).attr('onclick', "addFavorite(this, '" + userid + "', '" + categoery + 
+                    "', '" + name + "'); return false;");
+              }
+              else
+                  alert(response.contents);
+          },
+          "json");    
+}

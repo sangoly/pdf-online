@@ -12,7 +12,8 @@
 			<div class="refUserCategoery">
 				<ul>
 					{% for cate in refUserCategoeries %}
-						<li><a href="{{context}}/user/{{refUser.id}}/{{cate.categoery}}?orderby=clicktimes">
+						<li><a class="{{cate.categoery}}" 
+							href="{{context}}/user/{{refUser.id}}/{{cate.categoery}}?orderby=clicktimes">
 							{{cate.categoery}}</a><span class="badge">{{cate.count}}</span></li>
 					{% endfor %}
 				</ul>
@@ -40,7 +41,9 @@
 						<th>点击次数</th>
 						<th>收藏次数</th>
 						<th>上传时间</th>
-						<th>操作</th>
+						{% if user %}
+							<th>操作</th>
+						{% endif %}
 					</tr>
 					{% for item in pdfItems %}
 						<tr>
@@ -59,7 +62,22 @@
 							<td>{{item.clicktimes}}</td>
 							<td>0</td>
 							<td>{{item.timestamp|mytimee}}</td>
-							<td><a href="#">收藏</a></td>
+							{% if user %}
+								<td>
+									{% ifequal user refUser.id %}
+										<a class="usertablehref" href="javascrip:void(0)"
+											onclick="deletePdf(this, '{{item.userid}}', '{{item.categoery}}', '{{item.name}}');return false;">删除</a>
+									{% else %}
+										{% if item.favorite %}
+											<a href="javascript:void(0)"
+												 onclick="deleteFavorite(this, '{{item.userid}}', '{{item.categoery}}', '{{item.name}}'); return false;">取消收藏</a>
+										{% else %}
+											<a href="javascript:void(0)"
+												 onclick="addFavorite(this, '{{item.userid}}', '{{item.categoery}}', '{{item.name}}'); return false;">收藏</a>
+										{% endif %}
+									{% endifequal %}
+								</td>
+							{% endif %}
 						</tr>
 					{% endfor %}
 				</table>
