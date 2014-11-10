@@ -146,3 +146,52 @@ span.blueBall {
 	font-size: large;
 	margin-left: 20px;
 }
+
+/* For the user page*/
+.userDetailInfo {
+	text-align: center;
+	font-size: x-large;
+	font-style: oblique;
+	font-family: cursive;
+}
+
+.userDetailInfo img {
+	width: 210px;
+	height: 210px;
+}
+
+.statuswords {
+	margin-left: 24px;
+	font-size: small;
+	font-weight: 600;
+}
+
+.statuserrors {
+	margin-left: 43px;
+}
+
+.statuserrors li {
+	color: red;
+}
+
+#userDetailPage .refUserCategoery {
+	padding-left: 40px;
+	font-size: x-large;
+	margin-top: 100px;
+}
+
+#userDetailPage .refUserCategoery li a {
+	color: brown;
+}
+
+#userDetailPage .refUserCategoery li span{
+	margin-left: 10px;
+}
+
+#userDetailPage #orderButtonGroup button {
+	width: 84px;
+}
+
+#userDetailPage #pdfList > tbody > tr:nth-child(1) > th:nth-child(1) {
+	width: 450px;
+}

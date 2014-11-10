@@ -38,6 +38,8 @@ span.blueBall {
 	margin-right: 3px;
 }
 
+
+/*The index page*/
 .user-pdf-info {
 	margin-top: 8px;
 }
@@ -65,4 +67,101 @@ span.blueBall {
 .user-pdf-info .user-pdf-block p {
 	font-family: inherit;
 	font-size: large;
+}
+
+
+/*The categoery page*/
+.category-manage-outer {
+	padding-left: 300px;
+	padding-right: 300px;
+}
+
+.category-manage-outer .user-info img {
+	height: 50px;
+	width: 50px;
+}
+
+.category-manage-outer .user-info a {
+	margin-left: 15px;
+}
+
+.category-manage-outer .categoery-table {
+	margin-top: 25px;
+	font-size: large;
+	font-family: fantasy;
+}
+
+.category-manage-outer .categoery-table tr {
+	height: 50px;
+}
+
+.category-manage-outer .add-categoery-block {
+	margin-top: 30px;
+}
+
+.category-manage-outer li {
+	margin-left: 15px;
+}
+
+/*The pdf list page*/
+#pdfList .detail {
+	margin-left: 15px;
+}
+
+#pdfList .detail, #pdfList .read {
+	font-size: smaller;
+}
+
+
+/*The pdf detail page*/
+.pdfDetailOuter {
+	padding-left: 300px;
+	padding-right: 300px;
+	height: 100%;
+	text-align: center;
+}
+
+.pdfDetailOuter .pdfInfo img {
+	width: 140px;
+	height: 140px;
+}
+
+.pdfDetailOuter .pdfInfo .col-md-7 .row {
+	margin-top: 10px;
+	font-family: cursive;
+	font-size: large;
+}
+
+.pdfDetailOuter .pdfIntroduce, .pdfComments{
+	padding-left: 100px;
+	padding-right: 40px;
+	text-align: -webkit-auto;
+	font-size: large;
+	font-family: cursive;
+	margin-top: 15px;
+}
+
+.newComment .commerrors li {
+	color: red;
+	font-size: large;
+	margin-left: 20px;
+}
+
+/* For the user page*/
+.userDetailInfo {
+	text-align: center;
+	font-size: x-large;
+	font-style: oblique;
+	font-family: cursive;
+}
+
+.userDetailInfo img {
+	width: 210px;
+	height: 210px;
+}
+
+.statuswords {
+	margin-left: 24px;
+	font-size: small;
+	font-weight: 600;
 }

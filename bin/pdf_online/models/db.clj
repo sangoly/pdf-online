@@ -28,6 +28,9 @@
   (with-db sql/with-query-results
     res ["select * from users limit 10"] (doall res)))
 
+(defn update-statusword [userid param]
+  (with-db sql/update-values :users
+    ["id = ?" userid] param))
 
 ;; The pdfs table operations
 (defn create-pdf-record [pdf-record]
@@ -50,6 +53,15 @@
   (with-db sql/with-query-results
     res [(str "select * from pdfs order by " order-by " desc" (if limit 
                                                                 (str " limit " (first limit))))] 
+    (doall res)))
+
+(defn get-pdfs-by-owner [userid categoery order-by]
+  (with-db sql/with-query-results
+    res 
+    (if (= categoery "all") 
+      [(str "select * from pdfs where userid = ? order by " order-by " desc") userid]
+      [(str "select * from pdfs where userid = ? and categoery = ? order by " order-by " desc")
+            userid categoery]) 
     (doall res)))
 
 ;; use userid categoery and name can find an only pdf record

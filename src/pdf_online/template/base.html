@@ -17,6 +17,9 @@
 		<script type="text/javascript" src="{{context}}/js/jquery.min.js"></script>
 		<script type="text/javascript" src="{{context}}/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="{{context}}/js/screen.js"></script>
+		{% if currentuserjs %}
+		<script type="text/javascript" src="{{context}}/js/currentuser.js"></script>
+		{% endif %}
 
 		<link rel="stylesheet" type="text/css" href="{{context}}/css/screen.css">
 		<link rel="stylesheet" type="text/css" href="{{context}}/css/bootstrap.min.css">
@@ -40,9 +43,6 @@
 						{% endfor %}
 						</ul>
 					</div>
-				{% endif %}
-				{% if pdfItems %}
-					{% include "pdf_online/template/pdf_list_form.html" %}
 				{% endif %}
 				{% block content %}{% endblock %}
 			</div>

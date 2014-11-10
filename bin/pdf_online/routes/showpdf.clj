@@ -22,7 +22,9 @@
   (let [pdf (db/get-pdf-by-inden userid categoery name)
         comments (db/get-pdf-comments userid categoery name)]
     (if (session/get :user)
-     (layout/my-render "login_pdf_detail.html" {:pdf pdf :comments comments})
+     (layout/my-render "login_pdf_detail.html" {:pdf pdf :comments comments
+                                                :categoeries 
+                                                (db/get-user-categoeries (session/get :user))})
      (layout/my-render "unlogin_pdf_detail.html" {:pdf pdf :comments comments}))))
 
 (defn valid-add-comment-request? [to content]

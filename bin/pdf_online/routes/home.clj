@@ -8,8 +8,8 @@
 (defn home []
   (if (session/get :user)
     ;; Categoeries shouble be fill with the user's metadata
-	  (layout/my-render "login.html" {:categoeries (db/get-user-categoeries (session/get :user))
-	                                  :pdfItems (db/get-pdfs "clicktimes")})
+	  (layout/my-render "login_index.html" {:categoeries (db/get-user-categoeries (session/get :user))
+	                                        :pdfItems (db/get-pdfs "clicktimes")})
 	  (layout/my-render "index.html" {:newpdfs (db/get-pdfs "timestamp" "20")})))
 
 (defroutes home-routes

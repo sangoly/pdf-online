@@ -1,0 +1,69 @@
+<div class="container" id="userDetailPage">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="row userDetailInfo">
+				<img src="{{context}}/{{refUser.id}}/head-image" class="img-thumbnail">
+				<a href="{{context}}/user/{{refUser.id}}"><p>{{refUser.id}}</p></a>
+			</div>
+			<ul class="statuserrors"></ul>
+			<div class="statuswords">
+				{{refUser.statewords}}
+			</div>
+			<div class="refUserCategoery">
+				<ul>
+					{% for cate in refUserCategoeries %}
+						<li><a href="{{context}}/user/{{refUser.id}}/{{cate.categoery}}?orderby=clicktimes">
+							{{cate.categoery}}</a><span class="badge">{{cate.count}}</span></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="row">
+				<div class="btn-group" id="orderButtonGroup">
+				  <button type="button" class="btn btn-primary"
+				  			  onclick="javascrtpt:window.location.href='{{context}}/user/{{refUser.id}}/{{currCate}}?orderby=timestamp'">
+				  				上传时间</button>
+				  <button type="button" class="btn btn-success"
+				  				onclick="javascript:window.location.href='{{context}}/user/{{refUser.id}}/{{currCate}}?orderby=clicktimes'">
+				  				点击量</button>
+				  <button type="button" class="btn btn-info"
+				  				onclick="javascrtpt:window.location.href='javascript:void(0)'">
+				  				收藏次数</button>
+				</div>
+			</div>
+			<div class="row">
+				<table class="table table-striped" id="pdfList">
+					<tr>
+						<th>名称</th>
+						<th>类别</th>
+						<th>点击次数</th>
+						<th>收藏次数</th>
+						<th>上传时间</th>
+						<th>操作</th>
+					</tr>
+					{% for item in pdfItems %}
+						<tr>
+							<td>
+								<img style="weight:25px;height:25px;" src="{{context}}/img/pdf_icon.png">
+								<a href="{{context}}/read/{{item.userid}}/{{item.categoery}}/{{item.name}}" 
+								target="_blank">
+								{{item.name}}</a>
+								<a href="{{context}}/detail/{{item.userid}}/{{item.categoery}}/{{item.name}}" 
+									 class="detail">详情</a>
+								<span>|</span>
+								<a href="{{context}}/read/{{item.userid}}/{{item.categoery}}/{{item.name}}" 
+								   class="read" target="_blank">阅读</a>
+							</td>
+							<td>{{item.categoery}}</td>
+							<td>{{item.clicktimes}}</td>
+							<td>0</td>
+							<td>{{item.timestamp|mytimee}}</td>
+							<td><a href="#">收藏</a></td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

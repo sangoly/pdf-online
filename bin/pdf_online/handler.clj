@@ -6,6 +6,7 @@
             [pdf-online.routes.auth :refer [auth-routes]]
             [pdf-online.routes.upload :refer [upload-routes]]
             [pdf-online.routes.showpdf :refer [showpdf-routes]]
+            [pdf-online.routes.user :refer [user-routes]]
             [pdf-online.routes.categoery-manage :refer 
              [categoery-manage-routes]]
             [pdf-online.util :refer [get-template-path]]
@@ -19,8 +20,11 @@
             [selmer.filters :refer [add-filter!]])
   (:import [java.io File]))
 
+(defn generate-my-filter []
+  (add-filter! :mytimee (fn [x] (first (clojure.string/split (str x) #"\s")))))
+
 (defn init []
-  (add-filter! :mytime (fn [x] (str "ff" "me"))) 
+  (generate-my-filter) 
   (println "pdf-online is starting"))
 
 (defn user-page [_]
@@ -37,7 +41,7 @@
 (def app
   (noir-middleware/app-handler 
     [categoery-manage-routes showpdf-routes upload-routes 
-     auth-routes home-routes app-routes]
+     user-routes auth-routes home-routes app-routes]
     :access-rules [user-page]
     ;::middleware [anti-forgery/wrap-anti-forgery]
     ))
